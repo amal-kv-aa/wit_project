@@ -8,14 +8,19 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     context.read<SplashProvider>().gotoHome(context);
-    return
-   Scaffold(
-    body:  Container(
-      height: double.infinity,
-      width: double.infinity,
-      color: Colors.teal,
-      child: const Center(child: Text("App Name",style: TextStyle(color: Colors.white,fontSize: 30,fontFamily: "cursive"),),),
-    ),
-   );
+    return Scaffold(
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        color: Colors.teal,
+        child: const Center(
+          child: Text(
+            "App Name",
+            style: TextStyle(
+                color: Colors.white, fontSize: 30, fontFamily: "cursive"),
+          ),
+        ),
+      ),
+    );
   }
 }

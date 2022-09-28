@@ -42,7 +42,8 @@ class Homescreen extends StatelessWidget {
                   color: Color.fromARGB(255, 0, 0, 0),
                 ),
               );
-            } else if (snapshot.hasData) {
+            }
+             else if (snapshot.hasData) {
               final user = snapshot.data;
               return ListView.builder(
                   itemCount: user!.length,

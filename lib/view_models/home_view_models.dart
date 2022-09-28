@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:wit_test_app/main.dart';
 import 'package:wit_test_app/services/firebase/auth.dart';
 import 'package:wit_test_app/util/snackbar/custom_snack.dart';
 import 'package:wit_test_app/view/home_screen.dart';

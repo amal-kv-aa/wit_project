@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:wit_test_app/main.dart';
-import 'package:wit_test_app/view/login.dart';
 
 class SplashProvider with ChangeNotifier {
   Future gotoHome(BuildContext context) async {

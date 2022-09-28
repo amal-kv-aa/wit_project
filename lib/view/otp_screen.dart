@@ -1,16 +1,13 @@
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
-import 'package:wit_test_app/services/firebase/auth.dart';
 import 'package:wit_test_app/view/home_screen.dart';
 import 'package:wit_test_app/view_models/otp_view_model.dart';
 import 'package:wit_test_app/view_models/phonelogin_view_model.dart';
-import 'package:wit_test_app/view_models/sign_up_view_model.dart';
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({Key? key }) : super(key: key);

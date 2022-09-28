@@ -10,11 +10,11 @@ class TodoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final watch = context.watch<TodoProvider>();
-    final read =  context.read<TodoProvider>();
-    return
-    Scaffold(
+    final read = context.read<TodoProvider>();
+    return Scaffold(
+      backgroundColor: Colors.teal,
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.cyan,
       ),
       body: Form(
         key: watch.formkeytodo,
@@ -31,11 +31,12 @@ class TodoScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextFormField(
+                 style:const TextStyle(color: Colors.white),
                 controller: watch.taskcontroller,
                 decoration: const InputDecoration(
                   hintText: 'Enter Task Here',
                 ),
-                validator: (value)=> read.taskvalidate(value),
+                validator: (value) => read.taskvalidate(value),
               ),
             ),
             Container(
@@ -43,13 +44,13 @@ class TodoScreen extends StatelessWidget {
               height: 150,
               child: Center(
                 child: TextFormField(
+                   style:const TextStyle(color: Colors.white),
                   validator: (value) => read.datevalidate(value),
                   controller: watch.dateinputcontroller,
                   decoration: const InputDecoration(
                       suffixIcon: Icon(Icons.calendar_today),
                       labelText: "Enter Date"),
                   readOnly: true,
-                  
                   onTap: () async {
                     DateTime? pickedDate = await showDatePicker(
                         context: context,
@@ -59,12 +60,12 @@ class TodoScreen extends StatelessWidget {
                     if (pickedDate != null) {
                       String formattedDate =
                           DateFormat('dd - MM - yyyy').format(pickedDate);
-                      context.read<TodoProvider>().datecontrollerupdate(formattedDate);
-      
+                      context
+                          .read<TodoProvider>()
+                          .datecontrollerupdate(formattedDate);
                     } else {
                       log("Date is not selected");
                     }
-                    
                   },
                 ),
               ),
@@ -72,6 +73,7 @@ class TodoScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextFormField(
+                 style:const TextStyle(color: Colors.white),
                 validator: (value) => read.timevalidate(value),
                 controller: watch.timeinputcontroller,
                 decoration: const InputDecoration(
@@ -83,12 +85,13 @@ class TodoScreen extends StatelessWidget {
                     context: context,
                   );
                   if (pickedTime != null) {
-                    log(pickedTime.format(context));
                     DateTime parsedTime = DateFormat.jm()
                         .parse(pickedTime.format(context).toString());
                     String formattedTime =
                         DateFormat('HH:mm:ss').format(parsedTime);
-                     context.read<TodoProvider>().timecontrollerupdate(formattedTime);
+                    context
+                        .read<TodoProvider>()
+                        .timecontrollerupdate(formattedTime);
                   } else {
                     log("Time is not selected");
                   }

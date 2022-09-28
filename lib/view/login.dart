@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:wit_test_app/util/Textfield/custom_textfield.dart';
+import 'package:wit_test_app/view/phonelogin.dart';
 import 'package:wit_test_app/view/sign_up.dart';
 import 'package:wit_test_app/view_models/home_view_models.dart';
 
@@ -11,7 +12,7 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final watch =context.watch<HomeProvider>();
+    final watch = context.watch<HomeProvider>();
     final read = context.read<HomeProvider>();
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -26,7 +27,13 @@ class Login extends StatelessWidget {
               children: [
                 SizedBox(
                   height: 40.h,
-                  child: Text("App name",style: TextStyle(fontFamily: 'cursive',fontSize: 30.h,color: Colors.white),),
+                  child: Text(
+                    "App name",
+                    style: TextStyle(
+                        fontFamily: 'cursive',
+                        fontSize: 30.h,
+                        color: Colors.white),
+                  ),
                 ),
                 SizedBox(
                   height: 70,
@@ -34,8 +41,7 @@ class Login extends StatelessWidget {
                   child: ModelTextfield(
                     hint: 'email',
                     controller: read.emailcontroller,
-                    validator: (value) =>
-                        read.emailValidate(value!),
+                    validator: (value) => read.emailValidate(value!),
                   ),
                 ),
                 SizedBox(
@@ -43,7 +49,7 @@ class Login extends StatelessWidget {
                   width: 280,
                   child: ModelTextfield(
                     hint: 'password',
-                    visibility:watch.visibility,
+                    visibility: watch.visibility,
                     iconButton: IconButton(
                         onPressed: () {
                           read.visibleupdate();
@@ -55,34 +61,48 @@ class Login extends StatelessWidget {
                           color: Colors.black,
                         )),
                     controller: watch.passwordcontroller,
-                    validator: (value) =>
-                        read.passwordValidate(value!),
+                    validator: (value) => read.passwordValidate(value!),
                   ),
                 ),
-               SizedBox(height:20.h ),
-                ElevatedButton(onPressed: (){
-                  read.validate();
-                }, child: const Text("Login")),
-                SizedBox(height: 30.h),
-                 RichText(
-                text: TextSpan(
-              children: [
-                const TextSpan(
-                    text: "Don't have an account?",
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.w200)),
-                TextSpan(
-                    text: "  Sign-up",
-                    style: TextStyle(
-                        color: Colors.white54,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16.h),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>const SignUp()));
-                      }),
-              ],
-            ))
+                SizedBox(height: 20.h),
+                ElevatedButton(
+                    onPressed: () {
+                      read.validate(context);
+                    },
+                    style: ElevatedButton.styleFrom(primary: Colors.cyan,),
+                    child: const Text("Login")),
+                SizedBox(height: 10.h),
+                ElevatedButton.icon(
+                  onPressed: ()
+                    {
+                    Navigator.of(context).push(
+            MaterialPageRoute(builder: (ctx) => const PhoneLogin()));
+                    },
+                    icon: const Icon(Icons.mobile_friendly),
+                    label: (const Text("Login using phonenumber"))),
+                SizedBox(
+                  height: 40.h,
+                ),
+                RichText(
+                    text: TextSpan(
+                  children: [
+                    const TextSpan(
+                        text: "Don't have an account?",
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.w200)),
+                    TextSpan(
+                        text: "  Sign-up",
+                        style: TextStyle(
+                            color: Colors.white54,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.h),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (ctx) => const SignUp()));
+                          }),
+                  ],
+                ))
               ],
             ),
           )),

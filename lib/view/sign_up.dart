@@ -40,16 +40,6 @@ class SignUp extends StatelessWidget {
                   ),
                 ),
                   SizedBox(
-                  height: 70.h,
-                  width: 280.h,
-                  child: ModelTextfield(
-                    hint: 'phone number',
-                    controller:read.emailcontroller,
-                    validator: (value) =>
-                        context.read<HomeProvider>().phoneValidate(value!),
-                  ),
-                ),
-                   SizedBox(
                   height: 70,
                   width: 280,
                   child: ModelTextfield(
@@ -93,7 +83,7 @@ class SignUp extends StatelessWidget {
                 ),
                SizedBox(height:20.h ),
                 ElevatedButton(onPressed: (){
-                  context.read<SignupProvider>().validate();
+                  context.read<SignupProvider>().validate(context);
                 }, child: const Text("Login")),
                 SizedBox(height: 30.h),
                  RichText(
@@ -104,13 +94,14 @@ class SignUp extends StatelessWidget {
                     style: TextStyle(
                         color: Colors.black, fontWeight: FontWeight.w200)),
                 TextSpan(
-                    text: "  Sign-up",
+                    text: "  Sign-in",
                     style: TextStyle(
                         color: Colors.white54,
                         fontWeight: FontWeight.bold,
                         fontSize: 16.h),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
+                        Navigator.pop(context);
                       }),
               ],
             ))

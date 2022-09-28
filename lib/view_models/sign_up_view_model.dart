@@ -1,13 +1,16 @@
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:wit_test_app/services/firebase/auth.dart';
+import 'package:wit_test_app/util/snackbar/custom_snack.dart';
+import 'package:wit_test_app/view/home_screen.dart';
 
-class SignupProvider with ChangeNotifier{
-   bool isLoading = false;
+class SignupProvider with ChangeNotifier {
+  bool isLoading = false;
   final formkeysignUp = GlobalKey<FormState>();
-  final TextEditingController phonenumbercontroller = TextEditingController();
   final TextEditingController emailcontroller = TextEditingController();
   final TextEditingController passwordcontroller = TextEditingController();
-   final TextEditingController confirmcontroller = TextEditingController();
-   
+  final TextEditingController confirmcontroller = TextEditingController();
+  
   //===============confirm==password==========//
   String? confirmValidate(String? value) {
     if (value == null || value.trim().isEmpty) {
@@ -17,16 +20,27 @@ class SignupProvider with ChangeNotifier{
     }
     return null;
   }
-   
-  void validate(){
-  if ( formkeysignUp.currentState!.validate()) 
-  {
-      
-  }
-  else
-  {
 
-    return;
+  void validate(BuildContext context) async {
+    if (formkeysignUp.currentState!.validate()) {
+       tosignup(context);
+    } else {
+      return;
+    }
   }
+
+
+
+  tosignup(BuildContext context) {
+    FirebaseAuthMethodes(FirebaseAuth.instance)
+        .signupUsingEmail(
+            email: emailcontroller.text, password: passwordcontroller.text)!
+        .then((value) {
+      if (value == "success") {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx)=>const Homescreen()));
+      } else {
+        Showsnackbar.showsnack(context, value);
+      }
+    });
   }
 }

@@ -13,6 +13,7 @@ class SplashScreen extends StatelessWidget {
       height: double.infinity,
       width: double.infinity,
       color: Colors.cyanAccent,
+      child: const Center(child: Text("App Name",style: TextStyle(color: Colors.white,fontSize: 30,fontFamily: "cursive"),),),
     );
   }
 }

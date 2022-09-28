@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:wit_test_app/view/home_screen.dart';
 import 'package:wit_test_app/view/login.dart';
+import 'package:wit_test_app/view/splash.dart';
 import 'package:wit_test_app/view_models/home_view_models.dart';
 import 'package:wit_test_app/view_models/otp_view_model.dart';
 import 'package:wit_test_app/view_models/phonelogin_view_model.dart';
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
             )),
             primarySwatch: Colors.cyan,
           ),
-          home: const MainPage(),
+          home: const SplashScreen(),
         );
       },
       designSize: const Size(375, 812),
